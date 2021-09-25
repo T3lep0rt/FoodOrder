@@ -3,11 +3,13 @@ public class Manager {
 
 	List<String> Order = new List<String>();
 	List<String> Uniques = new List<String>();
+	Queue<List> OrderQueue = new Queue<List>();
+	
+	int OrderNumber = 0;
 	
 	public void addList(String pInput) {
 		Order.append(pInput);
 	}
-	
 	
 	public int getOrderAmount(String pProduct) {
 		int Anzahl = 0;
@@ -66,6 +68,20 @@ public class Manager {
 	public List<String> getUniques() {
 		findUnique();
 		return Uniques;
+	}
+	
+	public void addOrder() {
+		OrderNumber++;
+		OrderQueue.enqueue(Order);
+		//clear current order
+		Order.toFirst();
+		while(Order.hasAccess()) {
+			Order.remove();
+		}	
+	}
+	
+	public int returnOrderNumber() {
+		return OrderNumber;
 	}
 	
 }

@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 public class GUI {
 
 	private JFrame frame;
+	private JFrame frame2;
 	private Manager manager = new Manager();
 	JTextArea tfOrderSummary = new JTextArea();
 
@@ -47,6 +48,17 @@ public class GUI {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		frame2 = new JFrame();
+		frame2.setBounds(100, 100, 450, 300);
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.getContentPane().setLayout(null);
+		frame2.setVisible(true);
+		
+		
+		JTextArea tfOrders = new JTextArea();
+		tfOrders.setBounds(10, 11, 308, 250);
+		frame2.getContentPane().add(tfOrders);
 		
 		tfOrderSummary.setBounds(10, 59, 335, 95);
 		frame.getContentPane().add(tfOrderSummary);
@@ -88,6 +100,14 @@ public class GUI {
 		
 		JButton btnOrder = new JButton("Order");
 		btnOrder.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.addOrder();
+				Formatierer();
+				tfOrders.append(""+manager.returnOrderNumber()+"\n");
+				
+			}
+		});
 		btnOrder.setBounds(313, 208, 111, 42);
 		frame.getContentPane().add(btnOrder);
 		
